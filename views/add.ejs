@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Add Question</title>
+    </head>
+    <body>
+        <form action="/add" method="POST">
+        <input type="text" name="level" placeholder="level"><br>
+        <textarea placeholder="question" name="text" rows="4" cols="50"></textarea><br>
+        <input type="text" name="answer" placeholder="answer"><br>
+        <input type="text" name="extra" placeholder="extra"><br>
+        <input type="submit" value="Add">
+        </form>
+        <% if (data.length > 0){ %>
+        <h3><%= data %></h3>
+        <% } %>
+    </body>
+</html>

@@ -1,8 +1,23 @@
 <html>
     <head>
-        <title></title
+    <% if(question){ %>
+        <title>Level <%= question.level %></title>
+    <% } else { %>
+    <title>Question not found</title>
+    <% } %>
     </head>
     <body>
-        
+    <% if(question){ %>
+        <form action="/quiz/<%= question.level %>" method="POST">
+            <h2>Level <%= question.level %></h2>
+            <p>
+                <%= question.text %>
+            </p>
+            <input type="text" name="answer" placeholder="enter your answer...">
+            <button type="submit">Submit</button>
+        </form>
+    <% }else { %>
+    <h1>Oops! That's an 404 :(</h1>
+    <% } %>
     </body>
 </html>

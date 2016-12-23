@@ -4,6 +4,7 @@ var schema = db.Schema
 var questionSchema = new schema({
     level: Number,
     text: String,
+    answer: String,
     extra: String
 })
 
