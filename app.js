@@ -5,8 +5,10 @@ var app = express()
 app.set('view engine', 'ejs')
 
 app.use(cookieParser())
+app.use(express.static('public'))
 app.use('/add', require('./routes/add'))
 app.use('/quiz', require('./routes/quiz'))
+app.use('/end', require('./routes/end'))
 
 
 app.get('/set/:level', function(req, res){

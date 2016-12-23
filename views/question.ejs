@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
     <% if(question){ %>
@@ -5,19 +6,43 @@
     <% } else { %>
     <title>Question not found</title>
     <% } %>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <style>
+        body {
+            background-image: url("/img/christmas-background-tiles.gif");
+            background-repeat: repeat-xy;
+        }
+    </style>
+    
     </head>
     <body>
-    <% if(question){ %>
-        <form action="/quiz/<%= question.level %>" method="POST">
-            <h2>Level <%= question.level %></h2>
-            <p>
-                <%= question.text %>
-            </p>
-            <input type="text" name="answer" placeholder="enter your answer...">
-            <button type="submit">Submit</button>
-        </form>
-    <% }else { %>
-    <h1>Oops! That's an 404 :(</h1>
-    <% } %>
+    <div class="container" style="padding: 2%;margin-top: 5%;text-align: center; max-width: 45%; border: 2px solid green;border-radius: 10px;">
+        <% if(question){ %>
+            <form action="/quiz/<%= question.level %>" method="POST">
+                <div class="level-head" style="margin-bottom: 7%;">
+                    <h1>Level <%= question.level %></h1>
+                </div>
+                <div class="question-text" style="margin: 0 auto;">
+                    <p style="padding: 3%; border-radius: 8px;background-color: rgba(250, 250, 250, 0.75);">
+                        <%= question.text %>
+                    </p>
+                </div>
+                <!-- <img src="..." alt="..." class="img-rounded"> -->
+                <div class="form-inputs" style="margin: 0 auto;">
+                    <input type="text" class="form-control" name="answer" placeholder="enter your answer" style="text-align:center;valign:middle;">
+                    <button class="btn btn-danger btn-block" type="submit" style="margin-top:2%;">Submit</button>
+                </div>
+            </form>
+        <% }else { %>
+        <h1>Oops! That's an 404 :(</h1>
+        <% } %>
+    </div>
     </body>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>

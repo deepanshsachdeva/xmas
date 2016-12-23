@@ -2,7 +2,9 @@ var express = require('express')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var question = require('./../models/question')
+
 var router = express.Router()
+var maxLevel = 2
 
 router.use(cookieParser())
 router.use(bodyParser.urlencoded({extended:true}))
@@ -24,12 +26,10 @@ router.use(function(req, res, next){
 
 router.route('/:level')
   .get(function(req, res){
-
     question.findOne({level: req.params.level}, function(err, data){
       if(err){
         throw err
       }else{
-        console.log(data)
         res.render('question.ejs',{question: data})
       }
     })
@@ -37,14 +37,17 @@ router.route('/:level')
 
   .post(function(req, res){
     var userAnswer = req.body.answer.toLowerCase()
-
     question.findOne({level: req.params.level}, 'level answer', function(err, data){
       if(err){
         throw err
       }else{
-        console.log(data)
         if(userAnswer == data.answer){
-          res.cookie('level', Number(req.cookies.level)+1)
+          var newLevel = Number(req.cookies.level)+1
+          if(newLevel > maxLevel){
+            res.redirect('/end')
+            return
+          }
+          res.cookie('level', newLevel)
         }
         res.redirect('/quiz')
       }
